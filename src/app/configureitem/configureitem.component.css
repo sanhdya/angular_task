@@ -1,0 +1,32 @@
+.creat-field{
+    padding: 0px;
+    margin: auto;
+    /* width: 100%; */
+    height: 500px;
+    border: 1px solid gray;
+    margin-top: 20px;
+}
+.layout{
+    padding-top: 10px;
+    /* padding: 10px; */
+    /* width: 100%; */
+    margin: auto;
+    font-weight: bold;
+    padding-left: 15px;
+    /* padding-right: 0px;     */
+    /* width: 98%; */
+    /* border-: 1px solid gray; */
+    border-bottom: 1px solid gray;
+    /* border: 1px; */
+    height: 50px;
+    background-color: #E4E4E4;
+}
+.app-bg{
+    background-color: #E5E5E5;
+}
+.add-btn{
+    border: 1px solid gray; 
+    border-radius: 0px; 
+    width: 25%;
+    font-size: 12px;
+}

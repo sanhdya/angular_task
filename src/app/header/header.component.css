@@ -1,0 +1,128 @@
+.header{
+    /* position: absolute; */
+    width: 100%;
+    /* margin: 0; */
+    height: 60px;
+    background-color: #000000;
+}
+
+/* .fa-grid{ */
+    /* background-color: aliceblue; */
+/* } */
+.header .logo-area{
+    /* width: 95px; */
+    /* background-color: #FF6E40;a */
+    height: 100%;
+    float: left;
+}
+
+.header .page-title {
+    position: relative;
+    display: inline-block;
+}
+
+.header .user{
+    float: right;
+    /* padding-right: 26px; */
+}
+
+/* .header .user ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+} */
+
+/* .header_1 li{
+    display: inline-block;
+    padding: 20px 10px;
+    color: #fff;
+    cursor: pointer;
+    margin: auto;
+} */
+
+.page-title .line {
+   
+}
+
+.page-title h1 {
+    /* font-weight: 600;
+    padding: 18px 40px 0 40px;
+    font-size: 26px;
+    line-height: 42px;
+    text-transform: capitalize; */
+    /* text-transform: capitalize; */
+    /* margin: 0px 0px -5px 0;
+    background-color: #F5F5F5;
+    position: relative;
+    text-shadow: 2px 2px rgba(100, 100, 100, 0.1);
+    color: #455A64; */
+}
+
+.page-title h1:before {
+    /* display: block;
+    content: " ";
+    width: 40px;
+    height: 60px;
+    background-color: #FF6E40;
+    position: absolute;
+    left: -18px;
+    -moz-transform: skewX(30deg);
+    -o-transform: skewX(30deg);
+    transform: skewX(30deg);
+    -ms-transform: skewX(30deg);
+    -webkit-transform: skewX(30deg);
+    z-index: 1;
+    top: 0px; */
+}
+
+.page-title h1:after {
+    /* display: block;
+    content: " ";
+    width: 40px;
+    height: 60px;
+    background-color: #37474F;
+    position: absolute;
+    right: -18px;
+    -moz-transform: skewX(30deg);
+    -o-transform: skewX(30deg);
+    transform: skewX(30deg);
+    -ms-transform: skewX(30deg);
+    -webkit-transform: skewX(30deg);
+    z-index: 1;
+    top: 0px; */
+}
+
+#change-pwd-pop h5{
+    display: inline-block;
+}
+
+@media(max-width:767px){
+    /* .header .logo-area{
+        width: 5px;
+    }
+
+    .header .user li {
+        display: block;
+        padding: 2px 0px 0 2px;
+        font-size: 12px;
+    }
+
+    .page-title h1{
+        padding: 18px 22px 0 25px;
+        font-size: 13px;
+    }
+
+    .page-title h1:before{
+        padding: 20px 0px 0 20px;
+        left: -22px;
+    }
+
+    .page-title .line{
+        left: 25px;
+    }
+
+    .header .user {
+        padding-right: 10px;
+    } */
+
+}

@@ -1,0 +1,58 @@
+<div class="header_1">
+         <ul id="back-ar">
+             <li>
+                <span (click)= "backToCreate()">&#8592;</span> 
+             </li>
+             <li>
+                Configure a new door <span class="two3">2 of 3 </span>
+             </li>
+             
+         </ul>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 creat-field">
+            <div class="col-md-12">
+                <form (ngSubmit)="SubmitForm(createForm)" #createForm="ngForm">  
+                    <div class="form-group row mt-5">  
+                        <label for="category" class="col-sm-5 col-form-label" style="padding-left: 100px;">Select Category</label>  
+                        <div class="col-sm-5">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="category" name="category" >  
+                                <option *ngFor="let loc of categories" value="{{loc}}">{{loc}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-5">  
+                        <label for="serie" class="col-sm-5 col-form-label" style="padding-left: 100px;">Select Series</label>  
+                        <div class="col-sm-5">  
+                            <select style="height: 40px; font-size:17px;"  class="form-control form-control-sm" [(ngModel)]="serie" name="serie" >  
+                                <option *ngFor="let ser of series" value="{{ser}}">{{ser}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-5">  
+                        <label for="doortype" class="col-sm-5 col-form-label" style="padding-left: 100px;">Door Type</label>  
+                        <div class="col-sm-5">  
+                            <select style="height: 40px; font-size:17px;" class="form-control form-control-sm" [(ngModel)]="doortype" name="doortype" >  
+                                <option *ngFor="let door of doortypes" value="{{door}}">{{door}}</option>  
+                            </select>  
+                        </div>  
+                    </div>  
+                    <div class="col-md-12" style="text-align: center;">
+                        <button type="submit" class="btn btn-lg config">Configure</button>
+                    </div>
+                      
+                    <!-- <button type="reset" class="btn btn-danger btn-sm ml-2">Reset</button>   -->
+                    </form>  
+                    
+            </div>
+
+        </div>
+        
+        
+        
+    </div>
+    
+</div>

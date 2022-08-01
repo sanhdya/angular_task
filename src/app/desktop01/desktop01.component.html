@@ -1,0 +1,66 @@
+<div class="header_1">
+    
+    <ul id="menu">
+        <li (click)="onClickCart()">Carts</li>
+        <li (click)="onClickFav()">Favourites</li>
+    </ul>
+
+</div>
+<div *ngIf="this.showCart">
+    <ul id="d1-menu">
+        <li (click)="activeCart()" style="margin-left: 83px">Active Carts</li>
+        <li (click)="archivedCart()">Archived Carts</li>
+    </ul>
+</div>
+<hr>
+<div *ngIf="this.showFav || this.showArchivedCart">
+    <p style="text-align: center; margin-top: 40px;">No Data!</p>
+</div>
+<div class="col-md-12 xol-sm-12 col-xs-12" *ngIf="this.showActiveCart" >
+    <div class="row">
+    <div class="col-md-10 xol-sm-10 col-xs-10" style="margin: auto;">         
+        <table class="table table-striped">
+          <thead>
+            <tr class="m-3">
+              <th>Item Name</th>
+              <th>Window Codw</th>
+              <th>lockType</th>
+              <th>color</th>
+              <th>Framing</th>
+              <th>Glass Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let rw of tableRows" class="m-3" (click)="tableRowItem(rw)">
+              <td>{{rw.assemblyType == undefined ? 'NA' : rw.assemblyType }}</td>
+              <td>{{rw.windowList == undefined ? 'NA' : rw.windowList}}</td>
+              <td>{{rw.lockType == undefined ? 'NA' :rw.lockType}}</td>
+              <td>{{rw.colorL == undefined ? 'NA' : rw.colorL}}</td>
+              <td>{{rw.framingList == undefined ? 'NA' : rw.framingList}}</td>
+              <td>{{rw.glassType == undefined ? 'NA' : rw.glassType }}</td>
+            </tr>
+            <!-- <tr class="p-3">
+              <td>Mary</td>
+              <td>Moe</td>
+              <td>mary@example.com</td>
+              <td>Mary</td>
+              <td>Moe</td>
+              <td>mary@example.com</td>
+            </tr>
+            <tr class="p-3">
+              <td>July</td>
+              <td>Dooley</td>
+              <td>july@example.com</td>
+              <td>July</td>
+              <td>Dooley</td>
+              <td>july@example.com</td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+<div class="footer fixed-bottom">
+    <img src="../assets/img/add.png" class="add"  height="50px" width="50px" (click)="createItem()" >
+    
+</div>

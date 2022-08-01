@@ -1,0 +1,504 @@
+<div class="header_1">
+    <ul id="back-ar">
+        <li>
+           <span (click)= "backToNew()">&#8592;</span> 
+        </li>
+        <li>
+           Configure a new door <span class="two3">2 of 3 </span>
+        </li>
+        
+    </ul>
+
+</div>
+<div class="app-bg">
+<div class="col-md-12" *ngIf="showAppForm">
+    <form (ngSubmit)="submitForm(createForm)" #createForm="ngForm">
+    <div class="row">
+        
+        <div class="col-md-6 col-sm-12 col-xs-12" style=" margin:auto;">
+            <!-- <form action="#"> -->
+    
+                <input class="col-md-8 col-sm-8 col-xs-8" style="margin-top: 30px;width: 100%;"  name="range" type="range" min="0" max="100" [(ngModel)]="selectedRange" (ngModelChange)="setRange($event)" value="this.selectedRange">
+            <!-- </form> -->
+        </div>
+    </div>
+    <div class="row" > 
+        <div class="card col-md-8 mt-4" style="margin:auto;padding: 0px;">
+            <div class="card-header" style="font-weight:bold;">
+              Layout Options
+            </div>
+            <div class="card-body">
+                  
+                    <div class="form-group row">  
+                        <label for="assemblyType" class="col-sm-5 col-form-label" style="padding-left: 100px;">Assembly Type</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="assemblyType" name="assemblyType" >  
+                                <option value="undefined">Select</option> 
+                                <option *ngFor="let assm of assemblyTypes" value="{{assm}}" selected>{{assm}}</option>  
+                            </select>  
+                            <!-- <small class="form-text text-muted" *ngIf="name.touched">Assembly Type Required</small>  -->
+                        </div>  
+                    </div>
+                    <div class="form-group row mt-3">  
+                        <label class="col-sm-5 col-form-label" style="padding-left: 100px;">Measure Size</label>  
+                        <div class="col-sm-7">  
+                            <label for="widthL" class="col-md-3 col-sm-3 col-xs-3 col-form-label">Width</label>
+                            <select style="height: 30px;font-size:17px; margin-right:20px;" class="col-md-3 col-sm-3 col-xs-3 coform-control form-control-sm"[(ngModel)]="widthft" name="widthft" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let wi of widthList" value="{{wi}}">{{wi}}</option>  
+                            </select>  
+                            <select style="height: 30px;font-size:17px; margin-left:15px;" class="col-md-3 col-sm-3 col-xs-3 coform-control form-control-sm"[(ngModel)]="widthinch" name="widthinch" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let in of inchList" value="{{in}}">{{in}}</option>  
+                            </select> 
+                        </div> 
+                    </div>
+                    <div class="form-group row mt-3">  
+                        <label class="col-sm-5 col-form-label" style="padding-left: 100px;"></label>
+                        <div class="col-sm-7">  
+                            <label for="heighL" class="col-md-3 col-sm-3 col-xs-3 col-form-label">Height</label>
+                            <select style="height: 30px;font-size:17px; margin-right:20px;" class="col-md-3 col-sm-3 col-xs-3 coform-control form-control-sm"[(ngModel)]="heighft" name="heighft" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let hl of heightList" value="{{hl}}">{{hl}}</option>  
+                            </select>  
+                            <select style="height: 30px;font-size:17px; margin-left:15px;" class="col-md-3 col-sm-3 col-xs-3 coform-control form-control-sm"[(ngModel)]="heightinch" name="heightinch" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let inh of inchListH" value="{{inh}}">{{inh}}</option>  
+                            </select> 
+                        </div>
+                    </div>  
+                    <div class="form-group row mt-4">  
+                        <label for="windowList" class="col-sm-5 col-form-label" style="padding-left: 100px;">Window Code</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="windowList" name="windowList" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let wc of windowCodeLists" value="{{wc}}">{{wc}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-4">  
+                        <label for="designList" class="col-sm-5 col-form-label" style="padding-left: 100px;">Design</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="designList" name="designList" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let dL of designLists" value="{{dL}}">{{dL}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-4">  
+                        <label for="colorL" class="col-sm-5 col-form-label" style="padding-left: 100px;">Color</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="colorL" name="colorL" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let cL of colorLists" value="{{cL}}">{{cL}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    
+                <!-- </form> -->
+            </div>
+        </div>
+
+        <div class="card col-md-8 mt-4" style="margin:auto;padding: 0px;">
+            <div class="card-header"  style="font-weight:bold;">
+                Window Options
+            </div>
+            <div class="card-body">
+                <!-- <form (ngSubmit)="SubmitForm(createForm)" #createForm="ngForm">   -->
+                    <div class="form-group row mt-4">  
+                        <label for="glassType" class="col-sm-5 col-form-label" style="padding-left: 100px;">Glass Type</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="glassType" name="glassType" (change)="second($event.target.value)" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let gt of glassTypeList" value="{{gt}}">{{gt}}</option>  
+                            </select>  
+                        </div>  
+                    </div>
+                    
+                    <div class="form-group row mt-4">  
+                        <label for="sectionsgList" class="col-sm-5 col-form-label" style="padding-left: 100px;">Section(s) Glazed</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="sectionsgList" name="sectionsgList" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let sL of sectionsgLists" value="{{sL}}">{{sL}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-4">  
+                        <label for="framingList" class="col-sm-5 col-form-label" style="padding-left: 100px;">Framing</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="framingList" name="framingList" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let fL of framingLists" value="{{fL}}">{{fL}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    
+                <!-- </form> -->
+            </div>
+        </div>
+        <div class="card col-md-8 mt-4" style="margin:auto;padding: 0px;">
+            <div class="card-header"  style="font-weight:bold;">
+                Track Options
+            </div>
+            <div class="card-body">
+                <!-- <form (ngSubmit)="SubmitForm(createForm)" #createForm="ngForm">   -->
+                    <div class="form-group row mt-4">  
+                        <label for="springType" class="col-sm-5 col-form-label" style="padding-left: 100px;">Spring</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="springType" name="springType" (change)="third($event.target.value)">  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let st of springTypeLists" value="{{st}}">{{st}}</option>  
+                            </select>  
+                        </div>  
+                    </div>
+                    
+                    <div class="form-group row mt-4">  
+                        <label for="trackSize" class="col-sm-5 col-form-label" style="padding-left: 100px;">Track Size</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="trackSize" name="trackSize" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let ts of trackSizeLists" value="{{ts}}">{{ts}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-4">  
+                        <label for="trackMount" class="col-sm-5 col-form-label" style="padding-left: 100px;">Track Mount</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="trackMount" name="trackMount" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let tm of trackMountLists" value="{{tm}}">{{tm}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-4">  
+                        <label for="trackLift" class="col-sm-5 col-form-label" style="padding-left: 100px;">Track Lift</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="trackLift" name="trackLift" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let tm of trackLifttLists" value="{{tm}}">{{tm}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-4">  
+                        <label for="trackRadius" class="col-sm-5 col-form-label" style="padding-left: 100px;">Track Radius</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="trackRadius" name="trackRadius" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let tm of trackRadiusLists" value="{{tm}}">{{tm}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    
+                <!-- </form> -->
+            </div>
+        </div>
+
+        <div class="card col-md-8 mt-4" style="margin:auto;padding: 0px;">
+            <div class="card-header"  style="font-weight:bold;">
+                Other Options
+            </div>
+            <div class="card-body">
+                <!-- <form (ngSubmit)="SubmitForm(createForm)" #createForm="ngForm">   -->
+                    <div class="form-group row mt-4">  
+                        <label for="lockType" class="col-sm-5 col-form-label" style="padding-left: 100px;">Lock</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="lockType" name="lockType" (change)="fourth($event.target.value)">  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let lt of lockTypeLists" value="{{lt}}">{{lt}}</option>  
+                            </select>  
+                        </div>  
+                    </div>
+                    
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label" style="padding-left: 100px;">MISC Lock Options</label>  
+                        <div class="col-sm-5">
+                            <input type="radio" class="col-md-2" style="height: 20px;font-size:17px;" [(ngModel)]="miscLock" name="miscLock"  (change) = changeMisLock($event)>  
+                            <label class="col-md-10" for =miscLock> No Lock Hole </label>
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-4">  
+                        <label for="packaging" class="col-sm-5 col-form-label" style="padding-left: 100px;">Packaging</label>  
+                        <div class="col-sm-6">  
+                            <select style="height: 40px;font-size:17px;" class="form-control form-control-sm"[(ngModel)]="packaging" name="packaging" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let pl of packagingLists" value="{{pl}}">{{pl}}</option>  
+                            </select>  
+                        </div>  
+                    </div> 
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label" style="padding-left: 100px;">Additional Options</label>  
+                        <div class="col-sm-7">  
+                            <input type="checkbox" class="col-md-2" style="height: 20px;font-size:17px;"  [(ngModel)]="struts" name="struts">  
+                            <!-- <input type="checkbox" [checked]="myVar2" (change)="myVar2 = !myVar2" />     -->
+                            <label class="col-md-4"  for = "struts">Extrs strut(s) </label>
+                            <select style="height: 30px;font-size:17px; margin-left:15px;" class="col-md-3 coform-control form-control-sm"[(ngModel)]="extrastruts" name="extrastruts" >  
+                                <option value="undefined">Select</option>
+                                <option *ngFor="let ex of extrastrutsList" value="{{ex}}">{{ex}}</option> 
+                            </select> 
+                        </div> 
+                    </div> 
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label"></label>
+                        <div class="col-sm-7">  
+                            <input type="checkbox" class="col-md-2" style="height: 20px;font-size:17px;"  [(ngModel)]="spadestrap" name="spadestrap">  
+                            <!-- <input type="checkbox" [checked]="myVar2" (change)="myVar2 = !myVar2" />     -->
+                            <label class="col-md-10"  for = "spadestrap">Spade Strap Hinge(s) </label>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label"></label>
+                        <div class="col-sm-7">  
+                            <input type="checkbox" class="col-md-2" style="height: 20px;font-size:17px;"  [(ngModel)]="quitehinge" name="quitehinge">  
+                            <!-- <input type="checkbox" [checked]="myVar2" (change)="myVar2 = !myVar2" />     -->
+                            <label class="col-md-10"  for = "quitehinge">14 GA Quiet Hinge </label>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label"></label>
+                        <div class="col-sm-7">  
+                            <input type="checkbox" class="col-md-2" style="height: 20px;font-size:17px;"  [(ngModel)]="bttmastragal" name="bttmastragal">  
+                            <!-- <input type="checkbox" [checked]="myVar2" (change)="myVar2 = !myVar2" />     -->
+                            <label class="col-md-10"  for = "bttmastragal">Less Bottom Astragal</label>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label"></label>
+                        <div class="col-sm-7">  
+                            <input type="checkbox" class="col-md-2" style="height: 20px;font-size:17px;"  [(ngModel)]="goldbar" name="goldbar">  
+                            <!-- <input type="checkbox" [checked]="myVar2" (change)="myVar2 = !myVar2" />     -->
+                            <label class="col-md-10"  for = "goldbar">Gold Bar Gurantee( Select Dealers) </label>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label"></label>
+                        <div class="col-sm-7">  
+                            <input type="checkbox" class="col-md-2" style="height: 20px;font-size:17px;"  [(ngModel)]="medallionhard" name="medallionhard">  
+                            <!-- <input type="checkbox" [checked]="myVar2" (change)="myVar2 = !myVar2" />     -->
+                            <label class="col-md-10"  for = "medallionhard">Medallion Hardware Upgrade </label>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label"></label>
+                        <div class="col-sm-7">  
+                            <input type="checkbox" class="col-md-2" style="height: 20px;font-size:17px;"  [(ngModel)]="lightsealkit" name="lightsealkit">  
+                            <!-- <input type="checkbox" [checked]="myVar2" (change)="myVar2 = !myVar2" />     -->
+                            <label class="col-md-10"  for = "lightsealkit">Light Seal Kit </label>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label"></label>
+                        <div class="col-sm-7">  
+                            <input type="checkbox" class="col-md-2" style="height: 20px;font-size:17px;"  [(ngModel)]="slidelock" name="slidelock">  
+                            <!-- <input type="checkbox" [checked]="myVar2" (change)="myVar2 = !myVar2" />     -->
+                            <label class="col-md-10"  for = "slidelock">Slide Lock Mounted at 54" </label>
+                        </div>
+                    </div>
+                    <div class="form-group row mt-4">  
+                        <label class="col-sm-5 col-form-label"></label>
+                        <div class="col-sm-7">  
+                            <input type="checkbox" class="col-md-2" style="height: 20px;font-size:17px;"  [(ngModel)]="sparelift" name="sparelift">  
+                            <!-- <input type="checkbox" [checked]="myVar2" (change)="myVar2 = !myVar2" />     -->
+                            <label class="col-md-10"  for = "sparelift">2 Spare lift Handles </label>
+                        </div>
+                    </div> 
+                    
+                <!-- </form> -->
+            </div>
+        </div>
+        <div class="card col-md-8 mt-4" style="margin:auto;padding: 0px;">
+            <!-- <div class="card-header"  style="font-weight:bold;">
+                Other Options
+            </div> -->
+            <div class="card-body">
+                <div class="col-md-12" >
+                    <button type="submit" style="float: right; border: 1px solid #66332B; margin-right:  15px; " class="btn btn-lg config" disabled>Preview</button>
+                    
+                    <button type="submit" style="float: right; border: 1px solid #66332B;" class="btn btn-lg config">Add to cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+    
+</div>
+
+<div class="col-md-12" *ngIf="showAddToCart">
+    
+    <div class="card col-md-8" style="margin:auto;padding: 0px;" >
+        <div class="card-body" style="padding:0px;">
+          <h5 class="card-title pt-3" style="padding-left: 20px;" [textContent]="itemName"> </h5>
+          <p class="card-subtitle mb-2 text-muted" style="font-size:10px;padding-left: 20px;">Job Name: Front door with glass <span style="font-size:12px;color: #66332B; font-weight: bold;">Change</span></p>
+          <p class="card-subtitle mb-2 text-muted" style="font-size:10px;padding-left: 20px;">Product #CWD • Garage Door</p>
+          <p class="card-subtitle mb-2 text-muted" style="font-size:10px;padding-left: 20px;"> Availability: <span style="font-size:12px;color: #17A85F; font-weight: bold;">IN STOCK </span> (Available for Pickup)</p>
+         
+          <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4"></div>
+                </div>
+                <div class="col-md-4">
+                    <p style="color: #17A85F; text-align: center;">Standard Multiplier: .432</p>
+                    <p style="color: #17A85F; text-align: center;">Secondary Multipliers Applied</p>    
+                    <p style="text-align: center;font-size:12px;color: #66332B; font-weight: bold;">Apply MPQ</p>
+                </div>
+                <div class="col-md-4">
+                    <p style="text-align: right;">Net Price: <span style="font-weight: bold;font-size:15px;padding-right: 20px;">$4500.00</span></p>    
+                    <p style="text-align: right;"> Unit Price: <span style="font-weight: bold;font-size:15px; padding-right: 20px;">$4800.00</span></p>
+                    <p style="text-align: right;font-size:12px;color: #66332B; padding-right: 20px;">View Price Details</p>
+                    
+                    
+                </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button  class="col-md-3 col-sm-3 col-xs-3 btn btn-md add-btn" (click)="addToFav()">FAVOURITES</button>
+            <button class="col-md-3 col-sm-3 col-xs-3 btn btn-md add-btn" (click) = editItem()>EDIT</button>
+            <button class="col-md-3 col-sm-3 col-xs-3 btn btn-md add-btn" (click) = copyItem()> COPY</button>
+            <button class="col-md-3 col-sm-3 col-xs-3 btn btn-md add-btn" (click) = deleteItem()>DELETE</button>
+        </div>
+        </div>
+      </div>
+    <div class="col-md-8 mt-4" style="margin:auto;padding: 0px;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mt-2">
+                    
+                    <div class="row p-2">
+                        <div class="card-body" >
+                            <h5 class="card-title "style="font-weight: normal; font-size: 15px;">Change Delivery Date</h5>
+                            <input class="col-md-11 col-sm-11 col-xs-11 " style="width: 100%;" type="date">
+                            <h5 class="card-title mt-1 " style="font-weight:normal;font-size: 15px;">Standard Delivery: Tue August 20 - 2022</h5>
+
+                        </div>
+                            
+                    </div>
+                </div>
+                
+                <div class="card mt-2">
+                    <div class="row p-2">
+                        <div class="card-body" >
+                            <h5 class="card-title"style="font-weight: normal; font-size: 15px;">Purchase Order Number</h5>
+                            <input class="col-md-11 col-sm-11 col-xs-11" style="width: 100%;" type="text">
+                            <h5 class="card-title mt-1" style="font-weight:normal;font-size: 15px;">This PO will be useful to track this order items</h5>
+
+                        </div>
+                            
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- </div> -->
+            <!-- </div> -->
+            <div class="col-md-6 mt-2">
+                <div class="card col-md-12">
+
+                    <div class="card-body">
+                        <h5 class="card-title col-md-12 col-sm-12 col-xs-12"style=" font-size: 15px;">Bill Summary </h5>
+                        <div class="row"style="padding:0px;">
+                            <div class="col-md-4 col-sm-4 col-xs-4" style="width: 50%;">
+                                <div >Sub Total</div>
+                                <div >Energy Surcharge</div>
+                                <div  >Sales Tax</div>
+                                <div  style="font-size: 18px;">Total</div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4" style="width: 50%;">
+                                <div  style="text-align: right;">$ 4500.00</div>
+                                <div  style="text-align: right;">$ 70.18</div>
+                                <div  style="text-align: right;">$ 490.93</div>
+                                <div  style="text-align: right;">$ 5061.11</div>
+                            </div>
+                            
+                            
+                        </div>
+                        <hr>
+                        <!-- <div class=" row"> -->
+                            <input type="checkbox"><label>Apply Tax </label>
+                            <p>(The 1% iStore discount is calculated into the total price for all doors and door parts. Please refer to the quote or order acknowledgment for details.)</p>
+                        <!-- </div> -->
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 mt-4" style="margin:auto;padding: 0px;">
+        <!-- <div class="row"> -->
+            <!-- <div class="col-md-6 mt-2"> -->
+                <div class="card col-md-12">
+                    <!-- <div style="padding: 0px;"> -->
+                        <div class="card-body">
+                        
+                            
+                        <div class=" row"style="padding:0px;">
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <h5 class="pt-3"style=" font-size: 15px;">Billing To</h5>
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-8 col-xs-8" style="width:70%;">
+                                            <div>Bement Jared</div>
+                                            <div>144 Curt Shores, 50, Madison Avenue Hixson - 42040</div>
+                                            <div> Contact: (123) 456 7890</div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-3" style=" float: right;width:30%;">
+                                            <button class="btn btn-lg" style="color: #66332B; ">Change</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-12">
+                                    <h5 class="pt-3"style=" font-size: 15px;">Shipping To</h5>
+                                    <div class="row">
+                                        <div class="col-md-8 col-sm-8 col-xs-8" style="width:70%;">
+                                           <div>Bement Jared</div>
+                                           <div>144 Curt Shores, 50, Madison Avenue Hixson - 42040</div>
+                                           <div> Contact: (123) 456 7890</div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-3 col-xs-3" style=" float: right;width:30%;">
+                                            <button class="btn btn-lg" style="color: #66332B; ">Change</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </div>
+                        
+                    <!-- </div>  -->
+                    <!-- </div> -->
+                </div>
+            </div>
+            <div class="col-md-8 mt-4" style="margin:auto;padding: 0px;">
+                <div class="card ">
+                    <div class="card-body col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-12 col-xs-12" style="padding: 0px;">
+                                <div style="font-size: 10px;">1 Item</div>
+                                <div style="font-weight: bold;">$ 5061.11</div>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6" style="padding: 0px;">
+                                <button class="btn btn-md" style="border:1px solid #66332B; border-radius: 0; width: 100%;"(click)="addMore()"> ADD MORE</button>
+                            </div>
+                            <div class="col-md-2 col-sm-6 col-xs-6" style="padding: 0px;">
+                                <button class="btn btn-md" style="background-color: #66332B; border-radius: 0; color: #ffffff;width: 100%;" (click)="placeOrder()">PLACE ORDER</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    <!-- </div> -->
+
+    <!-- </div> -->
+
+
+    </div>
+
+
+    
+</div>

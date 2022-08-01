@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* *{
+    background-color: #E5E5E5;
+} */
+.header_1{
+    width: 100%;
+    /* margin: 0; */
+    height: 50px;
+    background-color: #34495E;
+}
+.header-text{
+    margin: 0px;
+    color: #ffffff;
+    padding-top: 16px;
+    font-weight: bold;
+    padding-left: 60px;
+
+}
+span{
+    /* height: auto; */
+    height: auto;
+    font-size: 30px;
+}
+ul#back-ar li{
+    display: inline;
+    list-style: none;
+    color: #ffffff;
+    padding-left: 20px;
+    /* padding-top: 38px; */
+    /* font-size: 20px; */
+    font-weight: bold;
+}
+ul#back-ar {
+    margin: 0px;
+}
+.two3{
+    color: #ffffff; 
+    font-size:small; 
+    font-weight: lighter; 
+    margin-left: 5px;
+}
