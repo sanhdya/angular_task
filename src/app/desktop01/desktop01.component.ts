@@ -42,7 +42,8 @@ export class Desktop01Component implements OnInit {
     }
   }
   onClickFav(){
-    this.showCart =  false
+    this.showCart =  false;
+    this.showActiveCart = false;
     this.showFav = true;
   }
   activeCart(){

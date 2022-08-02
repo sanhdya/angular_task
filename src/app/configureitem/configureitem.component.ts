@@ -32,9 +32,9 @@ extrastruts: any;
 framingList: any;
 glassType: any;
 goldbar: any;
-heighL: any;
-inchL: any;
-inchLH: any;
+heighft: any;
+widthinch: any;
+heightinch: any;
 lightsealkit: any;
 lockType: any;
 medallionhard: any;
@@ -52,7 +52,7 @@ trackLift: any;
 trackMount: any;
 trackRadius: any;
 trackSize: any;
-widthL: any;
+widthft: any;
 windowList:any;
 //   }> =[];
 createForm: FormGroup;
@@ -93,6 +93,9 @@ itemId;
     debugger
       if(this.router.url.includes('configure/')){
         // letthis.router.url
+        if(this.itemService.createdItem.length == 0){
+          this.router.navigate(['new']);
+        }else{
         let id = this.router.url;
         this.itemId =id.split('/')[2];
         
@@ -105,11 +108,17 @@ itemId;
         let itemn2 = this.itemService.createdItem[ this.itemId].designList == undefined ? 'NA' :this.itemService.createdItem[ this.itemId].designList;
         let itemn3= this.itemService.createdItem[ this.itemId].windowList == undefined ? 'NA' :this.itemService.createdItem[ this.itemId].windowList;
         this.itemName =  itemw +" "+itemh +" "+ itemn1+" "+itemn2+" "+itemn3;
+        }
       }else if(this.router.url.includes('edit/')){
-        let id = this.router.url;
-        this.itemId =id.split('/')[2];
-        this.showAppForm = true;
-        this.showAddToCart = false;
+        if(this.itemService.createdItem.length == 0){
+          this.router.navigate(['new']);
+        }else{
+          let id = this.router.url;
+          this.itemId =id.split('/')[2];
+        // }
+        
+       this.showAppForm = true;
+       this.showAddToCart = false;
        this.assemblyType=this.itemService.createdItem[ this.itemId].assemblyType,
        this.bttmastragal=this.itemService.createdItem[ this.itemId].bttmastragal ,
        this.colorL=this.itemService.createdItem[ this.itemId].colorL,
@@ -118,9 +127,9 @@ itemId;
        this.framingList=this.itemService.createdItem[ this.itemId].framingList,
        this.glassType=this.itemService.createdItem[ this.itemId].glassType,
        this.goldbar=this.itemService.createdItem[ this.itemId].goldbar,
-       this.heighL=this.itemService.createdItem[ this.itemId].heighL,
-       this.inchL=this.itemService.createdItem[ this.itemId].inchL,
-       this.inchLH=this.itemService.createdItem[ this.itemId].inchLH,
+       this.heighft=this.itemService.createdItem[ this.itemId].heighft,
+       this.widthinch=this.itemService.createdItem[ this.itemId].widthinch,
+       this.heightinch=this.itemService.createdItem[ this.itemId].heightinch,
        this.lightsealkit=this.itemService.createdItem[ this.itemId].lightsealkit,
        this.lockType=this.itemService.createdItem[ this.itemId].lockType,
        this.medallionhard=this.itemService.createdItem[ this.itemId].medallionhard,
@@ -138,52 +147,13 @@ itemId;
        this.trackMount=this.itemService.createdItem[ this.itemId].trackMount,
        this.trackRadius=this.itemService.createdItem[ this.itemId].trackRadius,
        this.trackSize=this.itemService.createdItem[ this.itemId].trackSize,
-       this.widthL=this.itemService.createdItem[ this.itemId].widthL,
+       this.widthft=this.itemService.createdItem[ this.itemId].widthft,
        this.windowList =this.itemService.createdItem[ this.itemId].windowList
 
       }
+    }
 
-      // console.log(this.assemblyType, "heelo")
-      // this.creatForm =this.fb.group ({
-      
-      //   assemblyType=['', Validators.required],
-      //   bttmastragal: [''],
-      //   colorL: [''],
-      //   designList: [''],
-      //   extrastruts: [''],
-      //   framingList: [''],
-      //   glassType: [''],
-      //   goldbar: [''],
-      //   heighL: [''],
-      //   inchL: [''],
-      //   inchLH: [''],
-      //   lightsealkit: [''],
-      //   lockType: [''],
-      //   medallionhard: [''],
-      //   miscLock: [''],
-      //   packaging: [''],
-      //   quitehinge: [''],
-      //   range: [''],
-      //   sectionsgList: [''],
-      //   slidelock: [''],
-      //   spadestrap: [''],
-      //   sparelift: [''],
-      //   springType: [''],
-      //   struts: false,
-      //   trackLift: [''],
-      //   trackMount: [''],
-      //   trackRadius: [''],
-      //   trackSize: [''],
-      //   widthL: [''],
-      //   windowList:[''],
-      // });
-      // console.log(this.itemService.createdItem);
-      
   }
-  // get f(){
-  //   return this.form.controls;
-  // }
-  
   
   setRange(value){
     this.selectedRange = value;
@@ -241,7 +211,9 @@ itemId;
     if(this.showAppForm == true){
       this.router.navigate(['new']);
     }else {
-      this.router.navigate(['configure']);
+      let id = this.router.url;
+      this.itemId =id.split('/')[2]
+      this.router.navigate(['edit/'+ this.itemId]);
       this.showAppForm = true;
       this.showAddToCart = false;
       console.log(item, "sjdhjkfhkjhkjh");
@@ -260,44 +232,6 @@ itemId;
     let itemno = this.itemService.createdItem.length-1
     localStorage.setItem('isedit',"editField");
     this.router.navigate(['edit/' + itemno]);
-    
-    // this.itemService.createdItem[this.itemId];
-    
-    // this.createForm.setValue({
-    // assemblyType: this.itemService.createdItem[ this.itemId].assemblyType,
-    // bttmastragal: this.itemService.createdItem[ this.itemId].bttmastragal ,
-    // colorL: this.itemService.createdItem[ this.itemId].colorL,
-    // designList: this.itemService.createdItem[ this.itemId].designList,
-    // extrastruts: this.itemService.createdItem[ this.itemId].extrastruts,
-    // framingList: this.itemService.createdItem[ this.itemId].framingList,
-    // glassType: this.itemService.createdItem[ this.itemId].glassType,
-    // goldbar: this.itemService.createdItem[ this.itemId].goldbar,
-    // heighL: this.itemService.createdItem[ this.itemId].heighL,
-    // inchL: this.itemService.createdItem[ this.itemId].inchL,
-    // inchLH: this.itemService.createdItem[ this.itemId].inchLH,
-    // lightsealkit: this.itemService.createdItem[ this.itemId].lightsealkit,
-    // lockType: this.itemService.createdItem[ this.itemId].lockType,
-    // medallionhard: this.itemService.createdItem[ this.itemId].medallionhard,
-    // miscLock: this.itemService.createdItem[ this.itemId].miscLock,
-    // packaging: this.itemService.createdItem[ this.itemId]. packaging,
-    // quitehinge: this.itemService.createdItem[ this.itemId].quitehinge,
-    // range: this.itemService.createdItem[ this.itemId].range,
-    // sectionsgList: this.itemService.createdItem[ this.itemId].sectionsgList,
-    // slidelock: this.itemService.createdItem[ this.itemId].slidelock,
-    // spadestrap: this.itemService.createdItem[ this.itemId].spadestrap,
-    // sparelift: this.itemService.createdItem[ this.itemId].sparelift,
-    // springType: this.itemService.createdItem[ this.itemId].springType,
-    // struts: false,
-    // trackLift: this.itemService.createdItem[ this.itemId].trackLift,
-    // trackMount: this.itemService.createdItem[ this.itemId].trackMount,
-    // trackRadius: this.itemService.createdItem[ this.itemId].trackRadius,
-    // trackSize: this.itemService.createdItem[ this.itemId].trackSize,
-    // widthL: this.itemService.createdItem[ this.itemId].widthL,
-    // windowList:this.itemService.createdItem[ this.itemId].windowList
-    // })
-    
-    
-//   })
   }
 second(v){
 console.log(v);
